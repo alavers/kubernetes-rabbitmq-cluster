@@ -8,7 +8,7 @@ RABBITMQ_MANAGEMENT_SERVICE_NAME=rabbitmq-management
 RABBITMQ_HEADLESS_SERVICE_NAME=rmq-cluster
 RABBITMQ_DOCKER_DIR=docker
 NAMESPACE?=$(shell curl -s config/$(NANIT_ENV)/$(RABBITMQ_APP_NAME)/namespace)
-RBAC?=FALSE
+RBAC?=TRUE
 SERVICE_ACCOUNT=$(shell if [ "$(RBAC)" = "TRUE" ]; then echo '\"serviceAccount\": \"$(RABBITMQ_APP_NAME)-sa\"'; fi)
 RABBITMQ_IMAGE_TAG=$(shell git log -n 1 --pretty=format:%h $(RABBITMQ_DOCKER_DIR))
 RABBITMQ_IMAGE_NAME=$(DOCKER_REPOSITORY)/$(RABBITMQ_APP_NAME):$(RABBITMQ_IMAGE_TAG)
